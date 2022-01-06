@@ -118,7 +118,7 @@ public class Triangle {
         }
 
         // If all the angles are equal
-        if (angleA == angleA && angleA == angleA) {
+        if (angleA == angleB && angleB == angleC) {
             name += "Equilateral ";
         // If only two of the angles are equal
         } else if (angleA == angleB || angleB == angleC
