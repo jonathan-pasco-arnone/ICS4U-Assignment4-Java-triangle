@@ -28,21 +28,29 @@ final class Main {
         throw new IllegalStateException("Cannot be instantiated");
     }
 
+    /**
+    * Determines if the triangle is valid.
+    *
+    * @param lengthA the length of A
+    * @param lengthB the length of B
+    * @param lengthC the length of C
+    * @return returns  whether it is valid or not
+    */
     static boolean isValid(final double lengthA, final double lengthB,
                            final double lengthC) {
 
         final boolean returnBool;
 
         // If any two sides are less than the other
-        if (lengthA + lengthB < lengthC || lengthA + lengthC < lengthB ||
-            lengthB + lengthC < lengthA) {
+        if (lengthA + lengthB < lengthC || lengthA + lengthC < lengthB
+            || lengthB + lengthC < lengthA) {
 
             // The triangle is invalid
             System.out.println("\nInvalid inputs\n");
             returnBool = false;
 
         // If the triangle either isn't set or is set to an impossible length
-        } else if(lengthA <= 0 || lengthB <= 0 || lengthC <= 0) {
+        } else if (lengthA <= 0 || lengthB <= 0 || lengthC <= 0) {
             // The triangle is invalid
             System.out.println("\nPlease use real lengths\n\n");
             returnBool = false;
@@ -84,18 +92,20 @@ final class Main {
                 System.out.println("\nSide C: ");
                 sideC = inputC.nextDouble();
 
-            } catch(java.util.InputMismatchException ex) {}
+            } catch (java.util.InputMismatchException ex) {
+                System.out.println("Please input again");
+            }
             triangleValid = isValid(sideA, sideB, sideC);
-        } while(!triangleValid);
+        } while (!triangleValid);
 
-       final Triangle fullTriangle = new Triangle(sideA, sideB, sideC);
+        final Triangle fullTriangle = new Triangle(sideA, sideB, sideC);
 
-       System.out.println("The area is: " + fullTriangle.getArea());
-       System.out.println("Angle A is: " + fullTriangle.getAngleA());
-       System.out.println("Angle B is: " + fullTriangle.getAngleB());
-       System.out.println("Angle C is: " + fullTriangle.getAngleC());
-       System.out.println("The name is: " + fullTriangle.getName());
-       System.out.println("The perimeter is: " + fullTriangle.getPerimeter());
+        System.out.println("The area is: " + fullTriangle.getArea());
+        System.out.println("Angle A is: " + fullTriangle.getAngleA());
+        System.out.println("Angle B is: " + fullTriangle.getAngleB());
+        System.out.println("Angle C is: " + fullTriangle.getAngleC());
+        System.out.println("The name is: " + fullTriangle.getName());
+        System.out.println("The perimeter is: " + fullTriangle.getPerimeter());
 
     }
 }

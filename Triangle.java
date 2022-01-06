@@ -6,130 +6,134 @@
 * @since   2022-1-5
 */
 
-// Imports
-import java.lang.Math;
-
 /**
 * This is the class that contains many functions.
 */
 public class Triangle {
     // Variables/Constants
+    // Most of them are not capitals because it makes the linter unhappy
 
     /**
     * Length A.
     */
-    private static double LENGTH_A;
+    private static double lengthA;
 
     /**
     * Length B.
     */
-    private static double LENGTH_B;
+    private static double lengthB;
 
     /**
     * Length C.
     */
-    private static double LENGTH_C;
+    private static double lengthC;
 
     /**
     * The Area.
     */
-    private static double AREA;
+    private static double area;
 
     /**
     * Angle A.
     */
-    private static double ANGLE_A;
+    private static double angleA;
 
     /**
     * Angle B.
     */
-    private static double ANGLE_B;
+    private static double angleB;
 
     /**
     * Angle C.
     */
-    private static double ANGLE_C;
+    private static double angleC;
 
     /**
     * The Name.
     */
-    private static String NAME;
+    private static String name;
 
     /**
     * The Perimeter.
     */
-    private static double PERIMETER;
+    private static double perimeter;
 
     /**
     * The Semiperimeter.
     */
-    private static double SEMIPERIMETER;
-
+    private static double semiperimeter;
 
     /**
     * The multiplier to change from radian to degrees.
     */
-    private static final double DEGREES = 180/Math.PI;
+    private static double degrees;
 
     /**
     * This is the constructor.
     *
-    * @param lengthAInput the inputted length A
-    * @param lengthAInput the inputted length B
-    * @param lengthAInput the inputted length C
+    * @param lengthInputA the inputted length A
+    * @param lengthInputB the inputted length B
+    * @param lengthInputC the inputted length C
     */
-    public Triangle(final double lengthAInput, final double lengthBInput,
-                 final double lengthCInput) {
-        LENGTH_A = lengthAInput;
-        LENGTH_B = lengthBInput;
-        LENGTH_C = lengthCInput;
+    public Triangle(final double lengthInputA, final double lengthInputB,
+                 final double lengthInputC) {
+        final int ninetyDegrees = 90;
+        final int oneEighty = 180;
+
+        lengthA = lengthInputA;
+        lengthB = lengthInputB;
+        lengthC = lengthInputC;
+
+        degrees = oneEighty / Math.PI;
 
         // Math.acos is inverse cosine
         // The "DEGREES" changes the result from a radian to a degree
-        ANGLE_A = DEGREES * (Math.acos((Math.pow(LENGTH_B, 2)
-            + Math.pow(LENGTH_C, 2)- Math.pow(LENGTH_A, 2))
-            / (2 * LENGTH_B * LENGTH_C)));
-    
-        ANGLE_B = DEGREES * (Math.acos((Math.pow(LENGTH_A, 2)
-            + Math.pow(LENGTH_C, 2) - Math.pow(LENGTH_B, 2))
-            / (2 * LENGTH_A * LENGTH_C)));
-    
-        ANGLE_C = DEGREES * (Math.acos((Math.pow(LENGTH_A, 2)
-            + Math.pow(LENGTH_B, 2) - Math.pow(LENGTH_C, 2))
-            / (2 * LENGTH_A * LENGTH_B)));
-    
+        angleA = degrees * (Math.acos((Math.pow(lengthB, 2)
+            + Math.pow(lengthC, 2) - Math.pow(lengthA, 2))
+            / (2 * lengthB * lengthC)));
+
+        angleB = degrees * (Math.acos((Math.pow(lengthA, 2)
+            + Math.pow(lengthC, 2) - Math.pow(lengthB, 2))
+            / (2 * lengthA * lengthC)));
+
+        angleC = degrees * (Math.acos((Math.pow(lengthA, 2)
+            + Math.pow(lengthB, 2) - Math.pow(lengthC, 2))
+            / (2 * lengthA * lengthB)));
+
         /*
         * Name
         */
-    
+
         // If all of the angles are acute
-        if (ANGLE_A < 90 && ANGLE_B < 90 && ANGLE_C < 90) {
-            NAME = "Acute ";
+        if (angleA < ninetyDegrees && angleB < ninetyDegrees
+            && angleC < ninetyDegrees) {
+            name = "Acute ";
         // If any of the angles are obtuse
-        } else if (ANGLE_A > 90 || ANGLE_B > 90 || ANGLE_C > 90) {
-            NAME = "Obtuse ";
+        } else if (angleA > ninetyDegrees || angleB > ninetyDegrees
+            || angleC > ninetyDegrees) {
+            name = "Obtuse ";
         // If there is a right angle
         } else {
-            NAME = "Right ";
+            name = "Right ";
         }
-    
+
         // If all the angles are equal
-        if (ANGLE_A == ANGLE_B && ANGLE_B == ANGLE_C) {
-            NAME += "Equilateral ";
+        if (angleA == angleA && angleA == angleA) {
+            name += "Equilateral ";
         // If only two of the angles are equal
-        } else if (ANGLE_A == ANGLE_B || ANGLE_B == ANGLE_C ||
-                   ANGLE_A == ANGLE_C) {
-            NAME += "Isosceles";
+        } else if (angleA == angleB || angleB == angleC
+            || angleA == angleC) {
+            name += "Isosceles";
         // If none of the angles are equal
         } else {
-            NAME += "Scalene";
+            name += "Scalene";
         }
-    
-        PERIMETER = LENGTH_A + LENGTH_B + LENGTH_C;
-        SEMIPERIMETER = PERIMETER / 2;
 
-        AREA = Math.sqrt(SEMIPERIMETER * (SEMIPERIMETER - LENGTH_A)
-            * (SEMIPERIMETER - LENGTH_B) * (SEMIPERIMETER - LENGTH_C));
+        perimeter = lengthA + lengthB + lengthC;
+        semiperimeter = perimeter / 2;
+
+        area = Math.sqrt(semiperimeter * (semiperimeter - lengthA)
+            * (semiperimeter - lengthB) * (semiperimeter - lengthC));
     }
 
     /**
@@ -138,7 +142,7 @@ public class Triangle {
     * @return returns the name
     */
     public String getName() {
-        return NAME;
+        return name;
     }
 
     /**
@@ -147,7 +151,7 @@ public class Triangle {
     * @return returns the area
     */
     public double getArea() {
-        return AREA;
+        return area;
     }
 
     /**
@@ -156,7 +160,7 @@ public class Triangle {
     * @return returns Angle A
     */
     public double getAngleA() {
-        return ANGLE_A;
+        return angleA;
     }
 
     /**
@@ -165,7 +169,7 @@ public class Triangle {
     * @return returns Angle B
     */
     public double getAngleB() {
-        return ANGLE_B;
+        return angleB;
     }
 
     /**
@@ -174,7 +178,7 @@ public class Triangle {
     * @return returns Angle C
     */
     public double getAngleC() {
-        return ANGLE_C;
+        return angleC;
     }
 
     /**
@@ -183,6 +187,6 @@ public class Triangle {
     * @return returns the perimeter
     */
     public double getPerimeter() {
-        return PERIMETER;
+        return perimeter;
     }
 }
